@@ -1,10 +1,37 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import MerchStore from '../components/MerchStore.astro';
+
+// IMPORT STATICO OBBLIGATORIO PER EVITARE CRASH IN BUILD
+import logoSessoStanco from '../assets/Opera_senza_titolo.jpg';
 ---
 
-<Layout title="Home">
-	<section class="mt-12 border-4 border-black p-8 bg-gray-100 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-		<h2 class="text-5xl font-black uppercase mb-4">Rumore & Sudore.</h2>
-		<p class="text-xl mb-6 max-w-2xl">Produciamo dischi che ti spaccano i timpani. Niente fronzoli, solo la fottuta verità registrata su nastro.</p>
-	</section>
+<Layout title="SESSO STANCO RECORDS | Etichetta Indipendente">
+  <section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch border-8 border-black p-6">
+    <div class="border-4 border-black overflow-hidden flex items-center justify-center">
+      <Image
+        src={logoSessoStanco}
+        alt="Logo Sesso Stanco Records"
+        width={800}
+        height={800}
+        class="w-full h-auto block filter grayscale contrast-200"
+        loading="eager"
+      />
+    </div>
+    
+    <div class="flex flex-col justify-center gap-8">
+      <h2 class="text-6xl font-black uppercase">Chi cazzo siamo</h2>
+      <p class="text-3xl leading-tight">
+        Non facciamo musica per farvi rilassare. Sesso Stanco Records è un buco nero di distorsioni piallate, clip di convertitori A/D spinti al limite e cavi jack saldati male masterizzati a volumi fottutamente illegali.
+      </p>
+      <p class="text-3xl leading-tight font-black bg-black text-white p-4 inline-block self-start uppercase">
+        Nessun compromesso. Nessun reso. Nessuna pietà.
+      </p>
+    </div>
+  </section>
+
+  <SocialLinks />
+  <MerchStore />
 </Layout>

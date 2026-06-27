@@ -1,0 +1,25 @@
+---
+const links = [
+  { name: 'Spotify', url: '#' },
+  { name: 'YouTube', url: '#' },
+  { name: 'Bandcamp', url: '#' },
+  { name: 'Instagram', url: '#' }
+];
+---
+<section class="mb-20">
+  <h2 class="text-4xl md:text-5xl font-black uppercase mb-6 border-b-4 border-black pb-2">Rete</h2>
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block border-8 border-black p-8 text-4xl font-black uppercase transition-colors duration-0 hover:bg-black hover:text-white text-center"
+        >
+          {link.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>

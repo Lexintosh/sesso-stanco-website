@@ -1,37 +1,196 @@
 ---
-import { Image } from 'astro:assets';
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
-import SocialLinks from '../components/SocialLinks.astro';
-import MerchStore from '../components/MerchStore.astro';
+import { Image } from 'astro:assets';
 
-// IMPORT STATICO OBBLIGATORIO PER EVITARE CRASH IN BUILD
-import logoSessoStanco from '../assets/Opera_senza_titolo.jpg';
+import logoImg from '../assets/Opera_senza_titolo.jpg';
+import imgSkut from '../assets/skut.jpg';
+import imgNoise from '../assets/tape_noise.jpg';
+import imgPoster from '../assets/gig_chaos.jpg';
+import imgSticker from '../assets/sticker_void.jpg';
 ---
 
-<Layout title="SESSO STANCO RECORDS | Etichetta Indipendente">
-  <section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch border-8 border-black p-6">
-    <div class="border-4 border-black overflow-hidden flex items-center justify-center">
-      <Image
-        src={logoSessoStanco}
-        alt="Logo Sesso Stanco Records"
-        width={800}
-        height={800}
-        class="w-full h-auto block filter grayscale contrast-200"
-        loading="eager"
-      />
+<Layout title="Sesso Stanco Records">
+  
+  <header class="fixed top-0 left-0 w-full bg-black border-b-4 border-white z-50 flex flex-col md:flex-row justify-between items-center p-2 md:p-4 gap-2 md:gap-0">
+    <div class="flex items-center gap-2 md:gap-4 w-full md:w-auto justify-center md:justify-start">
+      <Image src={logoImg} alt="Logo" class="w-8 h-8 md:w-12 md:h-12 grayscale contrast-200" loading="eager" />
+      <span class="text-lg md:text-3xl font-black uppercase tracking-tighter">
+        SESSO STANCO RECORDS
+      </span>
     </div>
-    
-    <div class="flex flex-col justify-center gap-8">
-      <h2 class="text-6xl font-black uppercase">Chi cazzo siamo</h2>
-      <p class="text-3xl leading-tight">
-        Non facciamo musica per farvi rilassare. Sesso Stanco Records è un buco nero di distorsioni piallate, clip di convertitori A/D spinti al limite e cavi jack saldati male masterizzati a volumi fottutamente illegali.
-      </p>
-      <p class="text-3xl leading-tight font-black bg-black text-white p-4 inline-block self-start uppercase">
-        Nessun compromesso. Nessun reso. Nessuna pietà.
-      </p>
+    <nav class="flex gap-4 md:gap-8 text-xs md:text-xl font-bold uppercase w-full md:w-auto justify-center">
+      <a href="#store" class="hover:bg-white hover:text-black px-2 py-1">Store</a>
+      <a href="#manifesto" class="hover:bg-white hover:text-black px-2 py-1">Manifesto</a>
+      <a href="#contatti" class="hover:bg-white hover:text-black px-2 py-1">Contatti</a>
+      <a href="#donate" class="hover:bg-white hover:text-black px-2 py-1">Donate</a>
+    </nav>
+  </header>
+
+  <div class="pt-24 md:pt-20"></div>
+
+  <div class="border-b-4 border-white bg-white text-black py-1 md:py-2 overflow-hidden flex whitespace-nowrap w-full">
+    <div class="animate-marquee text-lg md:text-2xl font-black uppercase tracking-widest flex-shrink-0">
+      NO REGOLE - NO SCONTI - SOLO RUMORE - COMPRA LA MAGLIETTA O VATATTENE - SESSO STANCO RECORDS - 
+      NO REGOLE - NO SCONTI - SOLO RUMORE - COMPRA LA MAGLIETTA O VATATTENE - SESSO STANCO RECORDS -
+    </div>
+  </div>
+
+  <section class="relative w-full h-[60vh] md:h-[80vh] border-b-8 border-white flex flex-col justify-center items-center overflow-hidden">
+    <Image 
+      src={imgPoster} 
+      alt="Caos" 
+      class="absolute inset-0 w-full h-full object-cover grayscale contrast-200 opacity-40 mix-blend-screen" 
+    />
+    <h1 class="relative z-10 text-[18vw] md:text-[12vw] leading-none font-black uppercase text-center mix-blend-difference px-2">
+      Sesso<br/>Stanco
+    </h1>
+  </section>
+
+  <section id="store" class="py-12 md:py-24 px-4 md:px-12 border-b-8 border-white">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
+      
+      <div class="w-full lg:w-1/2">
+        <Image src={imgSkut} alt="Maglietta Sesso Stanco" class="w-full h-auto border-4 border-white grayscale contrast-200" />
+      </div>
+
+      <div class="w-full lg:w-1/2 flex flex-col">
+        <h2 class="text-4xl md:text-7xl font-black uppercase mb-4 leading-tight">Maglietta<br/>Sesso Stanco</h2>
+        <div class="text-2xl md:text-4xl font-bold bg-white text-black inline-block px-4 py-2 self-start mb-6 md:mb-8">
+          12.00 €
+        </div>
+        
+        <p class="text-base md:text-xl mb-8 md:mb-12">
+          L'unico pezzo di stoffa che ti serve. sbrombata, grezza, fatta a mano, puzza già di Klevis prima di fartela spedire.
+        </p>
+
+        <form id="diy-checkout" class="flex flex-col gap-6 md:gap-8 w-full border-4 border-white p-4 md:p-8">
+          <h3 class="text-xl md:text-2xl uppercase font-black border-b-4 border-white pb-2">Selettore Taglia</h3>
+          
+          <div class="flex gap-4 w-full">
+            <label class="flex-1 cursor-pointer">
+              <input type="radio" name="size" value="M" class="peer sr-only" checked />
+              <div class="w-full border-4 border-white p-4 md:p-6 text-center text-3xl md:text-4xl font-black peer-checked:bg-white peer-checked:text-black hover:bg-neutral-900 transition-none">
+                M
+              </div>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input type="radio" name="size" value="XL" class="peer sr-only" />
+              <div class="w-full border-4 border-white p-4 md:p-6 text-center text-3xl md:text-4xl font-black peer-checked:bg-white peer-checked:text-black hover:bg-neutral-900 transition-none">
+                XL
+              </div>
+            </label>
+          </div>
+
+          <button type="submit" class="w-full border-4 border-white bg-black text-white text-2xl md:text-3xl font-black uppercase py-6 md:py-8 hover:bg-white hover:text-black mt-2 cursor-pointer transition-none">
+            Genera Ordine
+          </button>
+        </form>
+
+        <div id="order-instructions" class="hidden mt-6 md:mt-8 border-4 border-white bg-white text-black p-4 md:p-6">
+          <h4 class="text-xl md:text-2xl font-black uppercase mb-4">CAZZO SÌ. ECCO IL PIANO:</h4>
+          <p class="mb-4 text-sm md:text-lg">Il tuo client di posta si è aperto. Altrimenti manda una mail a <strong>sessostanco@gmail.com</strong> con questo codice in oggetto:</p>
+          <div id="generated-code" class="text-2xl md:text-4xl font-black bg-black text-white p-3 md:p-4 text-center mb-4 tracking-widest break-all"></div>
+          <p class="text-sm md:text-lg">Ti risponderemo con le coordinate. Spediamo quando vediamo il cashhhhh (puoi darmi anche contanti a mano).</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <SocialLinks />
-  <MerchStore />
+  <section id="manifesto" class="py-16 md:py-24 px-4 md:px-12 bg-white text-black border-b-8 border-black">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div>
+        <h2 class="text-5xl md:text-6xl font-black uppercase mb-6 md:mb-8 leading-none">NOI<br/>SIAMO<br/>QUI<br/>PER<br/>SBROMBARE.</h2>
+        <p class="text-lg md:text-2xl font-bold max-w-lg leading-relaxed">
+          Sesso Stanco Records è la nuova scena underground indipendente con sede a Bologna, se vuoi fare la tua musica scrivici.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-2 md:gap-4">
+        <Image src={imgNoise} alt="Noise" class="w-full h-40 md:h-64 object-cover border-4 border-black grayscale contrast-200" />
+        <Image src={imgSticker} alt="Sticker" class="w-full h-full object-cover border-4 border-black grayscale contrast-200 col-span-2 md:col-span-1" />
+      </div>
+    </div>
+  </section>
+
+  <!-- NUOVA SEZIONE CONTATTI -->
+  <section id="contatti" class="py-16 md:py-24 px-4 md:px-12 border-b-8 border-white bg-black">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-5xl md:text-7xl font-black uppercase mb-12 text-center md:text-left border-b-4 border-white pb-4">
+        RETE DI CONTATTO
+      </h2>
+      
+      <!-- Griglia per i pulsanti dei contatti -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        
+        <!-- INSTAGRAM -->
+        <a href="https://www.instagram.com/sesso_stanco_records/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center border-4 border-white p-8 hover:bg-white hover:text-black transition-none group cursor-pointer">
+          <span class="text-2xl md:text-4xl font-black uppercase mb-2 group-hover:invert-0">IG</span>
+          <span class="text-sm md:text-lg font-bold break-all text-center">@sesso_stanco_records</span>
+        </a>
+
+        <!-- MAIL -->
+        <a href="mailto:sessostanco@gmail.com" class="flex flex-col items-center justify-center border-4 border-white p-8 hover:bg-white hover:text-black transition-none group cursor-pointer">
+          <span class="text-2xl md:text-4xl font-black uppercase mb-2">MAIL</span>
+          <span class="text-sm md:text-lg font-bold break-all text-center">sessostanco@gmail.com</span>
+        </a>
+
+        <!-- TELEFONO -->
+        <a href="tel:+393454629647" class="flex flex-col items-center justify-center border-4 border-white p-8 hover:bg-white hover:text-black transition-none group cursor-pointer">
+          <span class="text-2xl md:text-4xl font-black uppercase mb-2">CALL</span>
+          <span class="text-sm md:text-lg font-bold text-center">345 4629 647</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="donate" class="py-16 md:py-32 px-4 flex justify-center items-center bg-black">
+    <a href="https://paypal.me/lexintosh" target="_blank" rel="noopener noreferrer" class="group relative inline-block border-4 md:border-8 border-white p-6 md:p-16 hover:bg-white hover:text-black text-center w-full max-w-4xl cursor-pointer">
+      <h2 class="text-4xl md:text-8xl font-black uppercase">
+        SUPPORTA<br/>IL DISAGIO
+      </h2>
+      <div class="mt-6 md:mt-8 text-lg md:text-3xl font-bold uppercase underline break-all">
+        -> PAYPAL.ME/LEXINTOSH <-
+      </div>
+      <div class="absolute inset-0 bg-white text-black flex justify-center items-center text-4xl md:text-8xl font-black uppercase opacity-0 group-hover:opacity-100 transition-none pointer-events-none">
+        DONA O MUORI
+      </div>
+    </a>
+  </section>
+
+  <footer class="border-t-4 border-white p-6 md:p-8 text-center md:text-left flex flex-col md:flex-row justify-between uppercase font-bold text-xs md:text-sm gap-4 md:gap-0 bg-black">
+    <span>© 2026 SESSO STANCO RECORDS.</span>
+    <span>FATE IL CAZZO CHE VI PARE CON QUESTO SITO.</span>
+  </footer>
+
 </Layout>
+
+<script>
+  const form = document.getElementById('diy-checkout');
+  const instructions = document.getElementById('order-instructions');
+  const codeDisplay = document.getElementById('generated-code');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const size = formData.get('size');
+    const orderCode = `SSR-TSHIRT-${size}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+    
+    codeDisplay.textContent = orderCode;
+    instructions.classList.remove('hidden');
+
+    const mailTo = "sessostanco@gmail.com"; 
+    const subject = encodeURIComponent(`NUOVO ORDINE: ${orderCode}`);
+    const body = encodeURIComponent(
+`Ciao stronzi, voglio la "maglietta Sesso Stanco".
+Taglia: ${size}
+Codice Ordine: ${orderCode}
+
+Ditemi dove devo mandarvi i 12 Euro e vi do l'indirizzo per la spedizione.`
+    );
+
+    window.location.href = `mailto:${mailTo}?subject=${subject}&body=${body}`;
+  });
+</script>

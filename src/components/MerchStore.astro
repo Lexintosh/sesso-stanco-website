@@ -1,27 +1,170 @@
 ---
+// src/components/MerchStore.astro
+import { Image } from 'astro:assets';
+
+// Importiamo le immagini statiche. Devono esistere in src/assets/ altrimenti la build implode.
+import imgSkut from '../assets/skut.jpg';
+import imgNoise from '../assets/tape_noise.jpg';       // Immagine aggiuntiva 1
+import imgPoster from '../assets/gig_chaos.jpg';      // Immagine aggiuntiva 2
+import imgSticker from '../assets/sticker_void.jpg';  // Immagine aggiuntiva 3
 ---
-<section class="mb-20 border-t-8 border-black pt-12">
-  <h2 class="text-5xl md:text-7xl font-black uppercase mb-12">Merch / Supporta questa merda</h2>
-  
-  <article class="border-8 border-black p-6 flex flex-col md:flex-row gap-8 items-stretch">
-    <div class="w-full md:w-1/2 bg-black text-white p-20 flex items-center justify-center font-black text-3xl uppercase border-4 border-black min-h-[400px]">
-      [FOTO MAGLIETTA FRONTE/RETRO]
+
+<section id="section-merch" class="tab-content hidden flex-grow flex flex-col">
+  <div class="bg-white text-black text-xl font-black p-2 uppercase tracking-widest mb-6">
+    [ CATALOGO MERCHANDISE - PREZZI IMPRESCINDIBILI ]
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-4 border-white">
+    <div class="border-4 border-white p-4 flex flex-col justify-between bg-black">
+      <div>
+        <Image src={imgSkut} alt="T-Shirt Skut" class="w-full h-48 object-cover border-4 border-white grayscale filter contrast-200 mb-4" />
+        <h3 class="text-xl uppercase font-bold mb-2">T-SHIRT "SKUT"</h3>
+        <p class="text-sm mb-4">Grafica distorta sul petto. Colore: Nero Pece.</p>
+      </div>
+      <div>
+        <div class="text-2xl font-black mb-4">12.00 EUR</div>
+        <button data-item='T-Shirt "SKUT" (12€)' data-has-size="true" class="buy-btn w-full bg-black text-white border-4 border-white font-bold p-3 uppercase hover:bg-white hover:text-black cursor-pointer">
+          Ordina
+        </button>
+      </div>
+    </div>
+
+    <div class="border-4 border-white p-4 flex flex-col justify-between bg-black">
+      <div>
+        <Image src={imgNoise} alt="Cassetta Noise" class="w-full h-48 object-cover border-4 border-white grayscale filter contrast-200 mb-4" />
+        <h3 class="text-xl uppercase font-bold mb-2">CASSETTA "RUMORE PURO"</h3>
+        <p class="text-sm mb-4">Nastro magnetico riciclato. Tracce non indicizzate.</p>
+      </div>
+      <div>
+        <div class="text-2xl font-black mb-4">8.00 EUR</div>
+        <button data-item='Cassetta "Rumore Puro" (8€)' data-has-size="false" class="buy-btn w-full bg-black text-white border-4 border-white font-bold p-3 uppercase hover:bg-white hover:text-black cursor-pointer">
+          Ordina
+        </button>
+      </div>
+    </div>
+
+    <div class="border-4 border-white p-4 flex flex-col justify-between bg-black">
+      <div>
+        <Image src={imgPoster} alt="Poster Gig" class="w-full h-48 object-cover border-4 border-white grayscale filter contrast-200 mb-4" />
+        <h3 class="text-xl uppercase font-bold mb-2">POSTER ANARCHIA CONCERTI</h3>
+        <p class="text-sm mb-4">Formato A2 su carta da macero. Serigrafia manuale.</p>
+      </div>
+      <div>
+        <div class="text-2xl font-black mb-4">5.00 EUR</div>
+        <button data-item='Poster Gig Anarchia (5€)' data-has-size="false" class="buy-btn w-full bg-black text-white border-4 border-white font-bold p-3 uppercase hover:bg-white hover:text-black cursor-pointer">
+          Ordina
+        </button>
+      </div>
+    </div>
+
+    <div class="border-4 border-white p-4 flex flex-col justify-between bg-black">
+      <div>
+        <Image src={imgSticker} alt="Sticker Void" class="w-full h-48 object-cover border-4 border-white grayscale filter contrast-200 mb-4" />
+        <h3 class="text-xl uppercase font-bold mb-2">STICKER PACK (X10)</h3>
+        <p class="text-sm mb-4">Colla ultra-forte permanente. Difficili da staccare.</p>
+      </div>
+      <div>
+        <div class="text-2xl font-black mb-4">3.00 EUR</div>
+        <button data-item='Sticker Pack x10 (3€)' data-has-size="false" class="buy-btn w-full bg-black text-white border-4 border-white font-bold p-3 uppercase hover:bg-white hover:text-black cursor-pointer">
+          Ordina
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="checkout-box" class="hidden mt-8 border-8 border-white p-6 bg-black">
+    <div class="flex justify-between items-center border-b-4 border-white pb-2 mb-6">
+      <h3 class="text-2xl font-black uppercase">SISTEMA DI CHECKOUT MANUALE</h3>
+      <button id="close-checkout" class="bg-white text-black font-bold px-3 py-1 hover:bg-black hover:text-white border-2 border-white">ESC</button>
     </div>
     
-    <div class="w-full md:w-1/2 flex flex-col justify-between gap-6">
+    <p class="mb-4 text-sm">[!] Nessun pagamento elettronico diretto. Registrati, ricevi il codice di sblocco via mail, effettua il Bonifico/PayPal usando il codice come causale. Spediamo appena vediamo i soldi.</p>
+    
+    <form id="order-form" class="space-y-4">
       <div>
-        <h3 class="text-5xl font-black uppercase mb-4">T-Shirt Sesso Stanco "Logo"</h3>
-        <p class="text-2xl leading-relaxed">
-          Cotone ruvido. Nessun fottuto lavaggio bio. Nera come la tua anima. Mettitela, sputa sui synth e taci.
-        </p>
+        <label class="block uppercase font-bold mb-1">Articolo Selezionato:</label>
+        <input type="text" id="form-item-display" class="w-full p-2 bg-black border-4 border-white text-white font-bold" readonly name="item" />
       </div>
-      
-      <a
-        href="https://buy.stripe.com/test"
-        class="block w-full bg-black text-white text-center p-8 text-6xl font-black uppercase transition-colors duration-0 hover:bg-white hover:text-black border-8 border-black hover:border-black"
-      >
-        Compra Ora
-      </a>
+      <div id="size-selector-wrapper">
+        <label class="block uppercase font-bold mb-1">Taglia (Solo per T-Shirt):</label>
+        <select id="form-size" name="size" class="w-full p-2 bg-black border-4 border-white text-white font-bold">
+          <option value="S">S [STRETTA]</option>
+          <option value="M">M [REGOLARE]</option>
+          <option value="L">L [LARGA]</option>
+          <option value="XL">XL [DEVASTANTE]</option>
+        </select>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block uppercase font-bold mb-1">Tuo Nome / Alias:</label>
+          <input type="text" name="name" required class="w-full p-2" placeholder="NOME COGNOME" />
+        </div>
+        <div>
+          <label class="block uppercase font-bold mb-1">Tua Mail Operativa:</label>
+          <input type="email" name="email" required class="w-full p-2" placeholder="NOME@DOMINIO.COM" />
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-white text-black font-black text-xl p-4 uppercase hover:bg-black hover:text-white border-4 border-white cursor-pointer">
+        INVIA REGISTRAZIONE ORDINE
+      </button>
+    </form>
+
+    <div id="checkout-result" class="hidden mt-6 border-4 border-white p-4 bg-white text-black text-center">
+      <h4 class="text-xl font-black uppercase mb-2">REGISTRAZIONE AVVENUTA</h4>
+      <p class="mb-4">Controlla la mail. Inserisci questo codice esatto nella causale del pagamento:</p>
+      <div id="display-code" class="text-3xl font-black bg-black text-white p-4 inline-block tracking-widest my-2"></div>
+      <p class="text-xs mt-2">Invia la contabile a ordini@sessostancorecords.xyz se vuoi velocizzare, altrimenti aspetta che guardiamo l'estratto conto.</p>
     </div>
-  </article>
+  </div>
 </section>
+
+<script>
+  const buyBtns = document.querySelectorAll('.buy-btn');
+  const checkoutBox = document.getElementById('checkout-box');
+  const closeCheckout = document.getElementById('close-checkout');
+  const formItemDisplay = document.getElementById('form-item-display');
+  const sizeWrapper = document.getElementById('size-selector-wrapper');
+  const orderForm = document.getElementById('order-form');
+  const checkoutResult = document.getElementById('checkout-result');
+  const displayCode = document.getElementById('display-code');
+
+  buyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.getAttribute('data-item');
+      const hasSize = btn.getAttribute('data-has-size') === 'true';
+      
+      formItemDisplay.value = item;
+      if (hasSize) {
+        sizeWrapper.classList.remove('hidden');
+      } else {
+        sizeWrapper.classList.add('hidden');
+      }
+      
+      checkoutBox.classList.remove('hidden');
+      checkoutResult.classList.add('hidden');
+      orderForm.classList.remove('hidden');
+      checkoutBox.scrollIntoView({ behavior: 'auto' });
+    });
+  });
+
+  closeCheckout.addEventListener('click', () => checkoutBox.classList.add('hidden'));
+
+  orderForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(orderForm);
+    
+    const response = await fetch('/api/order', {
+      method: 'POST',
+      body: formData
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      orderForm.classList.add('hidden');
+      displayCode.innerText = result.orderCode;
+      checkoutResult.classList.remove('hidden');
+    } else {
+      alert('ERRORE SISTEMA: ' + result.error);
+    }
+  });
+</script>

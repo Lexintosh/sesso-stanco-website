@@ -1,0 +1,31 @@
+---
+// src/layouts/Layout.astro
+interface Props {
+	title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title} | Sesso Stanco Records</title>
+	</head>
+	<body class="bg-white text-black font-mono antialiased selection:bg-black selection:text-white">
+		<header class="border-b-4 border-black p-6 flex justify-between items-center">
+			<h1 class="text-3xl font-black uppercase tracking-tighter">Sesso Stanco</h1>
+			<nav class="space-x-4 font-bold">
+				<a href="/" class="hover:bg-black hover:text-white px-2 py-1 transition-colors">Home</a>
+				<a href="/merch" class="hover:bg-black hover:text-white px-2 py-1 transition-colors">Merch</a>
+				<a href="/studio" class="hover:bg-black hover:text-white px-2 py-1 transition-colors">Studio</a>
+			</nav>
+		</header>
+		
+		<main class="p-6">
+			<slot /> <!-- Qui dentro ci finisce il contenuto delle varie pagine -->
+		</main>
+	</body>
+</html>
